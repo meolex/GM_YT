@@ -1,0 +1,21 @@
+{
+  "name": "gm_server",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production",
+    "lint": "prettier --write ."
+  },
+  "author": "meolex",
+  "license": "ISC",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/lodash": "^4.17.23",
+    "@types/node": "^25.2.3",
+    "lodash": "^4.17.23",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "@ragempcommunity/types-server": "^2.1.9"
+  }
+}

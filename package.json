@@ -1,0 +1,12 @@
+{
+  "name": "rage-gm",
+  "version": "1.0.0",
+  "scripts": {
+    "build:client": "cd _client && npm run build",
+    "build:server": "cd _server && npm run build",
+    "build:cef": "cd _cef && npm run build",
+    "build": "npm run build:client && npm run build:server && npm run build:cef"
+  },
+  "author": "meolex",
+  "license": "ISC"
+}
