@@ -2,19 +2,22 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import rpc from "rage-rpc";
+import { toast } from "sonner";
 
 export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleRegister = () => {
-    if (password !== confirmPassword) {
-      alert("Пароли не совпадают!");
-      return;
-    }
+  const handleRegister = async () => {
+    setIsLoading(true);
+    const response = await rpc.callServer("auth:register", { email, password });
+    setIsLoading(false);
 
-    console.log("Register with email:", email, "and password:", password);
+    if (response.error) return toast.error(response.error);
+    toast.success("Вы успешно зарегистрировались в системе!");
   };
 
   return (
@@ -22,18 +25,18 @@ export const Register = () => {
       <h3 className="py-4 text-5xl font-bold">Регистрация</h3>
       <div>
         <span>Email</span>
-        <Input type="text" placeholder="Введите пошту" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input type="text" placeholder="Введите пошту" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} />
       </div>
       <div>
         <span>Пароль</span>
-        <Input type="password" placeholder="Введите пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input type="password" placeholder="Введите пароль" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
       </div>
       <div>
         <span>Подтвердите пароль</span>
-        <Input type="password" placeholder="Подтвердите пароль" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+        <Input type="password" placeholder="Подтвердите пароль" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} disabled={isLoading} />
       </div>
-      <Button className="w-full" disabled={!email || !password || !confirmPassword || password !== confirmPassword} onClick={handleRegister}>
-        Зарегистрироваться
+      <Button className="w-full" disabled={!email || !password || !confirmPassword || password !== confirmPassword || isLoading} onClick={handleRegister}>
+        {isLoading ? "Загрузка..." : "Зарегистрироваться"}
       </Button>
     </div>
   );

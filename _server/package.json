@@ -4,18 +4,30 @@
   "scripts": {
     "dev": "vite build --watch --mode development",
     "build": "vite build --mode production",
-    "lint": "prettier --write ."
+    "lint": "prettier --write .",
+    "db:push": "npx drizzle-kit push",
+    "db:gen": "npx drizzle-kit generate",
+    "db:mig": "npx drizzle-kit migrate",
+    "db:studio": "npx drizzle-kit studio"
   },
   "author": "meolex",
   "license": "ISC",
   "devDependencies": {
+    "@ragempcommunity/types-server": "^2.1.9",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/lodash": "^4.17.23",
     "@types/node": "^25.2.3",
+    "@types/pg": "^8.16.0",
     "lodash": "^4.17.23",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "@ragempcommunity/types-server": "^2.1.9"
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "drizzle-kit": "^0.31.9",
+    "drizzle-orm": "^0.45.1",
+    "pg": "^8.18.0",
+    "rage-rpc": "^0.4.0"
   }
 }

@@ -9,13 +9,16 @@
   "author": "meolex",
   "license": "ISC",
   "devDependencies": {
+    "@ragempcommunity/types-client": "^2.1.9",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/lodash": "^4.17.23",
     "@types/node": "^25.2.3",
     "lodash": "^4.17.23",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "@ragempcommunity/types-client": "^2.1.9"
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "rage-rpc": "^0.4.0"
   }
 }

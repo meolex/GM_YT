@@ -1,8 +1,6 @@
-mp.events.add("playerReady", (player) => {
-  mp.gui.chat.push("CLIENT: Hello, welcome to the server!");
-});
+import "rage-rpc";
 
-mp.browsers.new("package://cef/index.html");
+mp.browsers.new("http://localhost:5173/");
 
 setTimeout(() => {
   mp.gui.cursor.show(true, true);
