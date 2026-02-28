@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "esnext",
-      "es2019"
-    ],
+    "lib": ["esnext", "es2019"],
     "moduleResolution": "node",
     "module": "esnext",
     "resolveJsonModule": true,
@@ -12,11 +9,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "typeRoots": [
-      "./node_modules/@types/",
-      "./typings/",
-      "./node_modules/@ragempcommunity"
-    ],
-    "baseUrl": "./src"
+    "typeRoots": ["./node_modules/@types/", "./typings/", "./node_modules/@ragempcommunity"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   }
 }
