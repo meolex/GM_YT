@@ -7,8 +7,14 @@ import { eq } from "drizzle-orm";
 
 class Auth {
   constructor() {
+    mp.events.add("playerReady", this.onPlayerReady.bind(this));
+
     rpc.register("auth:login", this.login.bind(this));
     rpc.register("auth:register", this.register.bind(this));
+  }
+
+  onPlayerReady(player: PlayerMp) {
+    rpc.callClient(player, "auth:showLogin");
   }
 
   async login(data: { email: string; password: string }) {
