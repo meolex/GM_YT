@@ -1,0 +1,393 @@
+{
+  "id": "8a3ed76d-de1e-4d9a-8b78-9f327d5f576d",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.player_appearance": {
+      "name": "player_appearance",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "player_appearance_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "player_id": {
+          "name": "player_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sex": {
+          "name": "sex",
+          "type": "sex",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mother": {
+          "name": "mother",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "father": {
+          "name": "father",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "similarity": {
+          "name": "similarity",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "skin_tone": {
+          "name": "skin_tone",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "blemishes": {
+          "name": "blemishes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eyebrows": {
+          "name": "eyebrows",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ageing": {
+          "name": "ageing",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "makeup": {
+          "name": "makeup",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "complexion": {
+          "name": "complexion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sun_damage": {
+          "name": "sun_damage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lipstick": {
+          "name": "lipstick",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "moles_freckles": {
+          "name": "moles_freckles",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nose_width": {
+          "name": "nose_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nose_height": {
+          "name": "nose_height",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nose_length": {
+          "name": "nose_length",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nose_bridge": {
+          "name": "nose_bridge",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nose_tip": {
+          "name": "nose_tip",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nose_bridge_shift": {
+          "name": "nose_bridge_shift",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brow_height": {
+          "name": "brow_height",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brow_width": {
+          "name": "brow_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cheekbone_height": {
+          "name": "cheekbone_height",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cheekbone_width": {
+          "name": "cheekbone_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cheeks_width": {
+          "name": "cheeks_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eyes": {
+          "name": "eyes",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lips": {
+          "name": "lips",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jaw_width": {
+          "name": "jaw_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jaw_height": {
+          "name": "jaw_height",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chin_length": {
+          "name": "chin_length",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chin_position": {
+          "name": "chin_position",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chin_width": {
+          "name": "chin_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chin_shape": {
+          "name": "chin_shape",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "neck_width": {
+          "name": "neck_width",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hair_style": {
+          "name": "hair_style",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "facial_hair": {
+          "name": "facial_hair",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eye_color": {
+          "name": "eye_color",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hair_color": {
+          "name": "hair_color",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "beard_color": {
+          "name": "beard_color",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "player_appearance_player_id_players_id_fk": {
+          "name": "player_appearance_player_id_players_id_fk",
+          "tableFrom": "player_appearance",
+          "tableTo": "players",
+          "columnsFrom": [
+            "player_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "player_appearance_player_id_unique": {
+          "name": "player_appearance_player_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "player_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.players": {
+      "name": "players",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "players_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "passwordHash": {
+          "name": "passwordHash",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "players_email_unique": {
+          "name": "players_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.sex": {
+      "name": "sex",
+      "schema": "public",
+      "values": [
+        "male",
+        "female"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

@@ -1,16 +1,22 @@
 import rpc from "rage-rpc";
 
-import { $browser } from "@/browser";
+import { $browser, ROUTES } from "@/browser";
 
 class Auth {
   constructor() {
-    rpc.register("auth:showLogin", this.showLogin.bind(this));
+    rpc.register("auth:start", this.start);
+    rpc.register("auth:finish", this.finish);
   }
 
-  showLogin() {
+  start = () => {
     $browser.enableCursor(true);
-    $browser.navigatoTo({ to: "/auth" });
-  }
+    $browser.navigateTo({ to: ROUTES.AUTH });
+  };
+
+  finish = () => {
+    $browser.enableCursor(false);
+    $browser.navigateTo({ to: ROUTES.HUD });
+  };
 }
 
 export default new Auth();

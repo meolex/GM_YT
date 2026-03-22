@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["types-server"],
     "target": "esnext",
     "lib": ["esnext", "es2019"],
     "moduleResolution": "node",

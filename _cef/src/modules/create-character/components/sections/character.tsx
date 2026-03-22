@@ -9,7 +9,7 @@ import { cn, randomInt } from "@/lib/utils";
 import { MarsIcon, VenusIcon } from "lucide-react";
 
 import type { Section } from "..";
-import { parentFemaleNamesList, parentMaleNamesList } from "../../config";
+import { PARENT_FEMALE_NAMES_LIST, PARENT_MALE_NAMES_LIST } from "../../config";
 import type { FormSchema } from "../../schema";
 
 export const Character = ({ setStep }: { setStep: (step: Section) => void }) => {
@@ -39,7 +39,7 @@ export const Character = ({ setStep }: { setStep: (step: Section) => void }) => 
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <ValueStepper label="Мать" options={parentFemaleNamesList} onChange={field.onChange} value={field.value} />
+                  <ValueStepper label="Мать" options={PARENT_FEMALE_NAMES_LIST} onChange={field.onChange} value={field.value} />
                 </FormControl>
               </FormItem>
             )}
@@ -50,7 +50,7 @@ export const Character = ({ setStep }: { setStep: (step: Section) => void }) => 
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <ValueStepper label="Отец" options={parentMaleNamesList} onChange={field.onChange} value={field.value} />
+                  <ValueStepper label="Отец" options={PARENT_MALE_NAMES_LIST} onChange={field.onChange} value={field.value} />
                 </FormControl>
               </FormItem>
             )}

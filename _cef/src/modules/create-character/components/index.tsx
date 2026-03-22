@@ -1,13 +1,16 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Slider } from "@/components/ui/slider";
 import { zodResolver } from "@hookform/resolvers/zod";
+import rpc from "rage-rpc";
 
+import { useCreateCharacter } from "../api/mutations/create-character";
 import { type FormSchema, formSchema } from "../schema";
 import { Appearance } from "./sections/appearance";
 import { Character } from "./sections/character";
@@ -30,6 +33,8 @@ const sections: { label: string; value: Section }[] = [
 export const CreateCharacter = () => {
   const [currentSection, setCurrentSection] = useState<Section>("character");
 
+  const { mutate, isPending } = useCreateCharacter();
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,8 +45,8 @@ export const CreateCharacter = () => {
         mother: 21,
         father: 0,
         sex: "male",
-        similarity: 1,
-        skinTone: 1,
+        similarity: 0.5,
+        skinTone: 0.5,
       },
 
       faceFeature: {
@@ -95,11 +100,8 @@ export const CreateCharacter = () => {
     },
   });
 
-  const handleSubmit = (data: FormSchema) => {
-    console.log(data);
-  };
-
-  const handleRotation = () => {};
+  const handleSubmit = (data: FormSchema) => mutate(data);
+  const handleRotation = (value: number) => rpc.callClient("create-character:rotate", [value]);
 
   const renderSection = () => {
     switch (currentSection) {
@@ -116,9 +118,49 @@ export const CreateCharacter = () => {
         return <Features setStep={setCurrentSection} />;
 
       case "clothes":
-        return <Clothes isLoading={false} />;
+        return <Clothes isLoading={isPending} />;
     }
   };
+
+  const headBlendData = useWatch({ control: form.control }).headBlendData;
+  const headOverlay = useWatch({ control: form.control }).headOverlay;
+  const faceFeature = useWatch({ control: form.control }).faceFeature;
+  const colors = useWatch({ control: form.control }).colors;
+  const clothes = useWatch({ control: form.control }).clothes;
+
+  const prev = useRef({ headBlendData, headOverlay, faceFeature, colors, clothes });
+
+  useEffect(() => {
+    if (JSON.stringify(headBlendData) !== JSON.stringify(prev.current.headBlendData)) {
+      rpc.callClient("create-character:update-head-blend", headBlendData);
+    }
+
+    if (JSON.stringify(headOverlay) !== JSON.stringify(prev.current.headOverlay)) {
+      rpc.callClient("create-character:update-head-overlay", headOverlay);
+    }
+
+    if (JSON.stringify(faceFeature) !== JSON.stringify(prev.current.faceFeature)) {
+      rpc.callClient("create-character:update-face-feature", faceFeature);
+    }
+
+    if (JSON.stringify(colors) !== JSON.stringify(prev.current.colors)) {
+      rpc.callClient("create-character:update-colors", colors);
+    }
+
+    if (JSON.stringify(clothes) !== JSON.stringify(prev.current.clothes)) {
+      rpc.callClient("create-character:update-clothes", clothes);
+    }
+
+    prev.current = { headBlendData, headOverlay, faceFeature, colors, clothes };
+  }, [headBlendData, headOverlay, faceFeature, colors, clothes]);
+
+  useEffect(() => {
+    if (currentSection === "clothes") {
+      rpc.callClient("create-character:interpolate-full");
+    } else {
+      rpc.callClient("create-character:interpolate-face");
+    }
+  }, [currentSection]);
 
   return (
     <div className="relative h-screen w-full">
@@ -180,6 +222,12 @@ export const CreateCharacter = () => {
           </Card>
         </form>
       </Form>
+      <div className="absolute bottom-10 left-2/3 w-[250px]">
+        <div className="flex flex-col items-center gap-2 rounded-md bg-secondary p-4 text-white">
+          <span>Поворот персонажа</span>
+          <Slider max={360} min={0} step={5} onValueChange={(value) => handleRotation(value[0])} />
+        </div>
+      </div>
     </div>
   );
 };

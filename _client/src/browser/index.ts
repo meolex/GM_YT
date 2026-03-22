@@ -1,5 +1,11 @@
 import rpc from "rage-rpc";
 
+export const ROUTES = {
+  AUTH: "/auth",
+  HUD: "/hud",
+  CREATE_CHARACTER: "/create-character",
+};
+
 class Browser {
   private url = "http://localhost:5173/"; // "package://cef/index.html";
   private browser: BrowserMp;
@@ -9,13 +15,11 @@ class Browser {
   }
 
   init() {
-    mp.console.logInfo("Initializing browser..."); // F11
-
     this.browser = mp.browsers.new(this.url);
     return this.browser;
   }
 
-  navigatoTo({ to, state }: { to: string; state?: any }) {
+  navigateTo({ to, state }: { to: string; state?: any }) {
     rpc.callBrowsers("cef:navigateTo", { to, state });
   }
 

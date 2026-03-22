@@ -1,4 +1,4 @@
-export const parentNames = [
+export const PARENT_NAMES = [
   { label: "Benjamin", value: 0 },
   { label: "Daniel", value: 1 },
   { label: "Joshua", value: 2 },
@@ -43,8 +43,8 @@ export const parentNames = [
   { label: "Emma", value: 41 },
 ];
 
-export const parentMaleNamesList = parentNames.slice(0, 21);
-export const parentFemaleNamesList = parentNames.slice(21);
+export const PARENT_MALE_NAMES_LIST = PARENT_NAMES.slice(0, 21);
+export const PARENT_FEMALE_NAMES_LIST = PARENT_NAMES.slice(21);
 
 export const HEAD_OVERLAY = [
   { label: "Пятна", formName: "blemishes", min: 0, max: 23, index: 0 },

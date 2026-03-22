@@ -1,0 +1,57 @@
+CREATE TYPE "public"."sex" AS ENUM('male', 'female');--> statement-breakpoint
+CREATE TABLE "player_appearance" (
+	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "player_appearance_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"player_id" integer NOT NULL,
+	"sex" "sex" NOT NULL,
+	"mother" integer NOT NULL,
+	"father" integer NOT NULL,
+	"similarity" real NOT NULL,
+	"skin_tone" real NOT NULL,
+	"blemishes" integer NOT NULL,
+	"eyebrows" integer NOT NULL,
+	"ageing" integer NOT NULL,
+	"makeup" integer NOT NULL,
+	"complexion" integer NOT NULL,
+	"sun_damage" integer NOT NULL,
+	"lipstick" integer NOT NULL,
+	"moles_freckles" integer NOT NULL,
+	"nose_width" real NOT NULL,
+	"nose_height" real NOT NULL,
+	"nose_length" real NOT NULL,
+	"nose_bridge" real NOT NULL,
+	"nose_tip" real NOT NULL,
+	"nose_bridge_shift" real NOT NULL,
+	"brow_height" real NOT NULL,
+	"brow_width" real NOT NULL,
+	"cheekbone_height" real NOT NULL,
+	"cheekbone_width" real NOT NULL,
+	"cheeks_width" real NOT NULL,
+	"eyes" real NOT NULL,
+	"lips" real NOT NULL,
+	"jaw_width" real NOT NULL,
+	"jaw_height" real NOT NULL,
+	"chin_length" real NOT NULL,
+	"chin_position" real NOT NULL,
+	"chin_width" real NOT NULL,
+	"chin_shape" real NOT NULL,
+	"neck_width" real NOT NULL,
+	"hair_style" integer NOT NULL,
+	"facial_hair" integer NOT NULL,
+	"eye_color" integer NOT NULL,
+	"hair_color" integer NOT NULL,
+	"beard_color" integer NOT NULL,
+	"created_at" timestamp DEFAULT now(),
+	"updated_at" timestamp DEFAULT now(),
+	CONSTRAINT "player_appearance_player_id_unique" UNIQUE("player_id")
+);
+--> statement-breakpoint
+CREATE TABLE "players" (
+	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "players_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"email" varchar(255) NOT NULL,
+	"passwordHash" varchar(255) NOT NULL,
+	"created_at" timestamp DEFAULT now(),
+	"updated_at" timestamp DEFAULT now(),
+	CONSTRAINT "players_email_unique" UNIQUE("email")
+);
+--> statement-breakpoint
+ALTER TABLE "player_appearance" ADD CONSTRAINT "player_appearance_player_id_players_id_fk" FOREIGN KEY ("player_id") REFERENCES "public"."players"("id") ON DELETE cascade ON UPDATE no action;
