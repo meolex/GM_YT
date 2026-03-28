@@ -1,10 +1,11 @@
 import { relations } from "drizzle-orm";
-import { integer, pgEnum, pgTable, real, timestamp, varchar } from "drizzle-orm/pg-core";
+import { integer, jsonb, pgEnum, pgTable, real, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const playersTable = pgTable("players", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   email: varchar({ length: 255 }).notNull().unique(),
   passwordHash: varchar({ length: 255 }).notNull(),
+  position: jsonb("position").$type<{ x: number; y: number; z: number; heading: number }>(),
 
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
