@@ -31,11 +31,18 @@ class Auth {
       if (!isValidPassword) return { error: "Неверный email или пароль!" };
 
       player._id = dbPlayer.id;
+      player._lastPosition = dbPlayer.position ?? null;
 
       if (!dbPlayer.appearance) return $createCharacter.start(player);
 
-      $player.teleportPlayerToSpawn(player);
-      rpc.callClient(player, "auth:finish");
+      $player.setPlayerAppearance(player, dbPlayer.appearance);
+
+      if (player._lastPosition) {
+        rpc.callClient(player, "spawn-select:start");
+      } else {
+        $player.teleportPlayerToSpawn(player);
+        rpc.callClient(player, "auth:finish");
+      }
 
       return { data: dbPlayer };
     } catch (error) {

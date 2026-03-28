@@ -4,6 +4,7 @@ export const ROUTES = {
   AUTH: "/auth",
   HUD: "/hud",
   CREATE_CHARACTER: "/create-character",
+  SPAWN_SELECT: "/spawn-select",
 };
 
 class Browser {
