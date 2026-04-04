@@ -17,7 +17,14 @@ class Browser {
 
   init() {
     this.browser = mp.browsers.new(this.url);
+
+    mp.gui.chat.show(false);
+    this.browser.markAsChat();
     return this.browser;
+  }
+
+  openChat(state: boolean) {
+    this.browser.call("chat:active", state);
   }
 
   navigateTo({ to, state }: { to: string; state?: any }) {
