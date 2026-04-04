@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes } from "react-router";
 import { Master } from "@/master";
 import { Auth } from "@/modules/auth/components";
 import { CreateCharacter } from "@/modules/create-character/components";
+import { Hud } from "@/modules/hud/components";
 import SpawnSelect from "@/modules/spawn-select/components";
 
 export const Routing = () => {
@@ -11,7 +12,7 @@ export const Routing = () => {
       <Routes>
         <Route path="" element={<Master />}>
           <Route path="/auth" element={<Auth />} />
-          <Route path="/hud" element={<div>HUD</div>} />
+          <Route path="/hud" element={<Hud />} />
           <Route path="/create-character" element={<CreateCharacter />} />
           <Route path="/spawn-select" element={<SpawnSelect />} />
         </Route>
